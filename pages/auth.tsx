@@ -30,8 +30,7 @@ const Auth = () => {
       await signIn('credentials', {
         email,
         password,
-        redirect: false,
-        callbackUrl: '/',
+        callbackUrl: '/profiles',
       });
       router.push('/');
     } catch (error) {
@@ -158,7 +157,7 @@ const Auth = () => {
                 <FcGoogle size={32} />
               </div>
               <div
-                onClick={() => signIn('github', { callbackUrl: '/' })}
+                onClick={() => signIn('github', { callbackUrl: '/profiles' })}
                 className="
                   w-10 
                   h-10 
