@@ -1,7 +1,12 @@
 import { useCallback, useState } from 'react';
+import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
+import axios from 'axios';
 import Input from '../components/Input';
 
 const Auth = () => {
+  const router = useRouter();
+
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +17,43 @@ const Auth = () => {
       currentVariant === 'login' ? 'register' : 'login',
     );
   }, []);
+
+  const login = useCallback(async () => {
+    if (email === '' || password === '') {
+      console.log('Validation error');
+      return;
+    }
+
+    try {
+      await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: '/',
+      });
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, router]);
+
+  const register = useCallback(async () => {
+    if (name === '' || email === '' || password === '') {
+      console.log('Validation error');
+      return;
+    }
+
+    try {
+      await axios.post('/api/register', {
+        name,
+        email,
+        password,
+      });
+      login();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, name, login]);
 
   return (
     <div
@@ -62,7 +104,7 @@ const Auth = () => {
                   type="text"
                   label="Username"
                   value={name}
-                  onChange={(e: any) => setName(e.target.value)}
+                  onChange={(ev: any) => setName(ev.target.value)}
                 />
               )}
               <Input
@@ -70,18 +112,18 @@ const Auth = () => {
                 type="email"
                 label="Email address or phone number"
                 value={email}
-                onChange={(e: any) => setEmail(e.target.value)}
+                onChange={(ev: any) => setEmail(ev.target.value)}
               />
               <Input
                 type="password"
                 id="password"
                 label="Password"
                 value={password}
-                onChange={(e: any) => setPassword(e.target.value)}
+                onChange={(ev: any) => setPassword(ev.target.value)}
               />
             </div>
             <button
-              // onClick={variant === 'login' ? `login : register}
+              onClick={variant === 'login' ? login : register}
               className="
                 bg-red-600 
                   py-3 
