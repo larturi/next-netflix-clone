@@ -1,14 +1,11 @@
 import type { NextPage, NextPageContext } from 'next';
-import { getSession, signOut } from 'next-auth/react';
-import useCurrentUser from '../hooks/useCurrentUser';
+import { getSession } from 'next-auth/react';
+import Navbar from '@/components/Navbar';
 
 const Home: NextPage = () => {
-  const { data: user } = useCurrentUser();
   return (
     <>
-      <h1 className="text-2xl text-green-500">Hola</h1>
-      <p>Loged in as: {user?.name}</p>
-      <button onClick={() => signOut()}>SignOut</button>
+      <Navbar />
     </>
   );
 };
