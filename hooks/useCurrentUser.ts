@@ -1,6 +1,7 @@
 import useSwr from 'swr';
 
 import fetcher from '@/libs/fetcher';
+import { User } from '@prisma/client';
 
 const useCurrentUser = () => {
   const { data, error, isLoading, mutate } = useSwr('/api/current', fetcher);

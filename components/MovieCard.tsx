@@ -4,6 +4,7 @@ import { FiChevronDown } from 'react-icons/fi';
 import { BsFillPlayFill } from 'react-icons/bs';
 
 import { MovieInterface } from '@/types';
+import FavoriteButton from './FavoriteButton';
 // import FavoriteButton from '@/components/FavoriteButton';
 // import useInfoModalStore from '@/hooks/useInfoModalStore';
 
@@ -109,7 +110,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             >
               <BsFillPlayFill className="text-black w-4 lg:w-6" />
             </div>
-            {/* <FavoriteButton movieId={data.id} /> */}
+            
+            <FavoriteButton movieId={data.id} />
+            
             <div
             //   onClick={() => openModal(data?.id)}
               className="
