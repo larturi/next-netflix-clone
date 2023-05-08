@@ -3,14 +3,15 @@ import React, { useCallback } from 'react';
 import PlayButton from '@/components/PlayButton';
 import useBillboard from '@/hooks/useBillborad';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import useInfoModalStore from '@/hooks/useInfoModal';
 
 const Billboard: React.FC = () => {
-  //   const { openModal } = useInfoModalStore();
+  const { openModal } = useInfoModalStore();
   const { data } = useBillboard();
 
-  //   const handleOpenModal = useCallback(() => {
-  //     openModal(data?.id);
-  //   }, [openModal, data?.id]);
+  const handleOpenModal = useCallback(() => {
+    openModal(data?.id);
+  }, [openModal, data?.id]);
 
   return (
     <div className="relative h-[56.25vw]">
@@ -30,7 +31,8 @@ const Billboard: React.FC = () => {
         src={data?.videoUrl}
       ></video>
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
-        <p className="
+        <p
+          className="
             text-white 
             text-1xl 
             md:text-5xl 
@@ -39,10 +41,12 @@ const Billboard: React.FC = () => {
             lg:text-6xl 
             font-bold 
             drop-shadow-xl
-          ">
+          "
+        >
           {data?.title}
         </p>
-        <p className="
+        <p
+          className="
             text-white 
             text-[8px] 
             md:text-lg 
@@ -52,13 +56,14 @@ const Billboard: React.FC = () => {
             md:w-[80%] 
             lg:w-[50%] 
             drop-shadow-xl
-          ">
+          "
+        >
           {data?.description}
         </p>
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
           <PlayButton movieId={data?.id} />
           <button
-            // onClick={handleOpenModal}
+            onClick={handleOpenModal}
             className="
             bg-white
             text-white

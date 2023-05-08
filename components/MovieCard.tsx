@@ -5,8 +5,7 @@ import { BsFillPlayFill } from 'react-icons/bs';
 
 import { MovieInterface } from '@/types';
 import FavoriteButton from './FavoriteButton';
-// import FavoriteButton from '@/components/FavoriteButton';
-// import useInfoModalStore from '@/hooks/useInfoModalStore';
+import useInfoModalStore from '@/hooks/useInfoModal';
 
 interface MovieCardProps {
   data: MovieInterface;
@@ -14,7 +13,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const router = useRouter();
-//   const { openModal } = useInfoModalStore();
+  const { openModal } = useInfoModalStore();
 
   const redirectToWatch = useCallback(
     () => router.push(`/watch/${data.id}`),
@@ -114,7 +113,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             <FavoriteButton movieId={data.id} />
             
             <div
-            //   onClick={() => openModal(data?.id)}
+              onClick={() => openModal(data?.id)}
               className="
                   cursor-pointer 
                   ml-auto 

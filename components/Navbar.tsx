@@ -52,7 +52,6 @@ const Navbar = () => {
           <NavbarItem label="Films" />
           <NavbarItem label="New & Popular" />
           <NavbarItem label="My List" />
-          <NavbarItem label="Browse by Languages" />
         </div>
         <div
           onClick={toggleMobileMenu}

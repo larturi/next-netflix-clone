@@ -5,13 +5,20 @@ import Billboard from '@/components/Billboard';
 import MovieList from '@/components/MovieList';
 import useMovieList from '@/hooks/useMovieList';
 import useFavorites from '@/hooks/useFavorites';
+import InfoModal from '../components/InfoModal';
+import useInfoModalStore from '@/hooks/useInfoModal';
 
 const Home: NextPage = () => {
   const { data: movies = [] } = useMovieList();
   const { data: favorites = [] } = useFavorites();
+  const { isOpen, closeModal } = useInfoModalStore();
 
   return (
     <>
+      <InfoModal 
+        visible={isOpen}
+        onClose={closeModal}
+      />
       <Navbar />
       <Billboard />
       
