@@ -1,4 +1,5 @@
 import type { NextPage, NextPageContext } from 'next';
+import Head from 'next/head'
 import { getSession } from 'next-auth/react';
 import Navbar from '@/components/Navbar';
 import Billboard from '@/components/Billboard';
@@ -15,6 +16,9 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Netflix Clone</title>
+      </Head>
       <InfoModal 
         visible={isOpen}
         onClose={closeModal}

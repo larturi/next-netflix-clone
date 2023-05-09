@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import { FcGoogle } from 'react-icons/fc';
@@ -57,8 +58,13 @@ const Auth = () => {
   }, [email, password, name, login]);
 
   return (
-    <div
-      className="
+    <>
+      <Head>
+        <title>Netflix Clone: Login</title>
+      </Head>
+
+      <div
+        className="
         relative 
         h-full 
         w-full 
@@ -68,21 +74,21 @@ const Auth = () => {
         bg-fixed
         bg-cover
       "
-    >
-      <div
-        className="
+      >
+        <div
+          className="
         bg-black
         w-full
         h-full
         lg:bg-opacity-50
       "
-      >
-        <nav className="px-12 py-5">
-          <img src="/images/logo.png" alt="logo" className="h-12" />
-        </nav>
-        <div className="flex justify-center">
-          <div
-            className="
+        >
+          <nav className="px-12 py-5">
+            <img src="/images/logo.png" alt="logo" className="h-12" />
+          </nav>
+          <div className="flex justify-center">
+            <div
+              className="
               bg-black 
               bg-opacity-70 
               px-16
@@ -94,38 +100,38 @@ const Auth = () => {
               rounded-md
               w-full
             "
-          >
-            <h2 className="text-white text-4xl mb-8 font-semibold">
-              {variant === 'login' ? 'Sign in' : 'Register'}
-            </h2>
-            <div className="flex flex-col gap-4">
-              {variant === 'register' && (
+            >
+              <h2 className="text-white text-4xl mb-8 font-semibold">
+                {variant === 'login' ? 'Sign in' : 'Register'}
+              </h2>
+              <div className="flex flex-col gap-4">
+                {variant === 'register' && (
+                  <Input
+                    id="name"
+                    type="text"
+                    label="Username"
+                    value={name}
+                    onChange={(ev: any) => setName(ev.target.value)}
+                  />
+                )}
                 <Input
-                  id="name"
-                  type="text"
-                  label="Username"
-                  value={name}
-                  onChange={(ev: any) => setName(ev.target.value)}
+                  id="email"
+                  type="email"
+                  label="Email address or phone number"
+                  value={email}
+                  onChange={(ev: any) => setEmail(ev.target.value)}
                 />
-              )}
-              <Input
-                id="email"
-                type="email"
-                label="Email address or phone number"
-                value={email}
-                onChange={(ev: any) => setEmail(ev.target.value)}
-              />
-              <Input
-                type="password"
-                id="password"
-                label="Password"
-                value={password}
-                onChange={(ev: any) => setPassword(ev.target.value)}
-              />
-            </div>
-            <button
-              onClick={variant === 'login' ? login : register}
-              className="
+                <Input
+                  type="password"
+                  id="password"
+                  label="Password"
+                  value={password}
+                  onChange={(ev: any) => setPassword(ev.target.value)}
+                />
+              </div>
+              <button
+                onClick={variant === 'login' ? login : register}
+                className="
                 bg-red-600 
                   py-3 
                   text-white 
@@ -135,13 +141,13 @@ const Auth = () => {
                   hover:bg-red-700 
                   transition
                 "
-            >
-              {variant === 'login' ? 'Login' : 'Sign up'}
-            </button>
-            <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-              <div
-                onClick={() => signIn('google', { callbackUrl: '/profiles' })}
-                className="
+              >
+                {variant === 'login' ? 'Login' : 'Sign up'}
+              </button>
+              <div className="flex flex-row items-center gap-4 mt-8 justify-center">
+                <div
+                  onClick={() => signIn('google', { callbackUrl: '/profiles' })}
+                  className="
                   w-10 
                   h-10 
                   rounded-full 
@@ -153,12 +159,12 @@ const Auth = () => {
                   transition
                 bg-white
                 "
-              >
-                <FcGoogle size={32} />
-              </div>
-              <div
-                onClick={() => signIn('github', { callbackUrl: '/profiles' })}
-                className="
+                >
+                  <FcGoogle size={32} />
+                </div>
+                <div
+                  onClick={() => signIn('github', { callbackUrl: '/profiles' })}
+                  className="
                   w-10 
                   h-10 
                   rounded-full 
@@ -171,25 +177,26 @@ const Auth = () => {
                   border-[2px] 
                   border-white
                 "
-              >
-                <FaGithub size={32} />
+                >
+                  <FaGithub size={32} />
+                </div>
               </div>
+              <p className="text-neutral-500 mt-12 text-center">
+                {variant === 'login'
+                  ? 'First time using?'
+                  : 'Already have an account?'}
+                <span
+                  onClick={toggleVariant}
+                  className="text-white ml-1 hover:underline cursor-pointer"
+                >
+                  {variant === 'login' ? 'Create an account' : 'Login'}
+                </span>
+              </p>
             </div>
-            <p className="text-neutral-500 mt-12 text-center">
-              {variant === 'login'
-                ? 'First time using?'
-                : 'Already have an account?'}
-              <span
-                onClick={toggleVariant}
-                className="text-white ml-1 hover:underline cursor-pointer"
-              >
-                {variant === 'login' ? 'Create an account' : 'Login'}
-              </span>
-            </p>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
