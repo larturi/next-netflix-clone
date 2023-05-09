@@ -1,4 +1,4 @@
-# Netflix Clone with Next.js
+# Nflx Clone with Next.js
 
 ### Next.js, Prisma, MongoDB, Tailwind, NextAuth
 
