@@ -10,7 +10,8 @@ import InfoModal from '../components/InfoModal';
 import useInfoModalStore from '@/hooks/useInfoModal';
 
 const Home: NextPage = () => {
-  const { data: movies = [] } = useMovieList();
+  const { data: series = [] } = useMovieList('serie');
+  const { data: movies = [] } = useMovieList('movie');
   const { data: favorites = [] } = useFavorites();
   const { isOpen, closeModal } = useInfoModalStore();
 
@@ -27,8 +28,9 @@ const Home: NextPage = () => {
       <Billboard />
       
       <div className='pb-40'>
-        <MovieList title="Trending now" data={movies} />
-        <MovieList title="My favorites" data={favorites} />
+        <MovieList title="Series" data={series} />
+        <MovieList title="Movies" data={movies} />
+        <MovieList title="Favorites" data={favorites} />
       </div>
     </>
   );

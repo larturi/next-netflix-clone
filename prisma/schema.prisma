@@ -69,4 +69,6 @@ model Movie {
   thumbnailUrl String
   genre        String
   duration     String
+  type         String
 }
+

@@ -135,8 +135,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
               <FiChevronDown className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" />
             </div>
           </div>
-          <p className="text-green-400 font-semibold mt-4">
-            New <span className="text-white">2023</span>
+          <p className="text-gray-100 font-semibold mt-4">
+            {data.title}
           </p>
           <div className="flex flex-row mt-4 gap-2 items-center">
             <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
