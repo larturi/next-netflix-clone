@@ -5,6 +5,8 @@ import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs';
 import AccountMenu from '@/components/AccountMenu';
 import MobileMenu from '@/components/MobileMenu';
 import NavbarItem from '@/components/NavbarItem';
+import useSearchModal from '@/hooks/useSearchModal';
+import SearchModal from './Modals/SearchModal';
 
 const TOP_OFFSET = 67;
 
@@ -15,6 +17,7 @@ type NavbarItemProps = {
 
 const Navbar = () => {
   const router = useRouter();
+  const searchModal = useSearchModal();
 
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -86,7 +89,11 @@ const Navbar = () => {
         </div>
         <div className="flex flex-row ml-auto gap-7 items-center">
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
-            <BsSearch className="w-6" />
+            <BsSearch 
+              className="w-6"
+              onClick={searchModal.onOpen}
+            />
+            <SearchModal />
           </div>
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
             <BsBell className="w-6" />
