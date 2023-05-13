@@ -1,15 +1,21 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-  BsChevronDown, BsSearch, BsBell
-} from 'react-icons/bs';
-
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs';
 import AccountMenu from '@/components/AccountMenu';
 import MobileMenu from '@/components/MobileMenu';
 import NavbarItem from '@/components/NavbarItem';
 
 const TOP_OFFSET = 67;
 
+type NavbarItemProps = {
+  label: string;
+  active: boolean;
+};
+
 const Navbar = () => {
+  const router = useRouter();
+
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
@@ -38,6 +44,10 @@ const Navbar = () => {
     setShowMobileMenu((current) => !current);
   }, []);
 
+  const isActive = (path: string) => {
+    return router.pathname === path ? true : false;
+  };
+
   return (
     <nav className="w-full fixed z-40">
       <div
@@ -45,13 +55,22 @@ const Navbar = () => {
           showBackground ? 'bg-zinc-900 bg-opacity-90' : ''
         }`}
       >
-        <img src="/images/logo.png" className="h-4 lg:h-7" alt="Logo" />
+        <Link href="/">
+          <img src="/images/logo.png" className="h-4 lg:h-7" alt="Logo" />
+        </Link>
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
-          <NavbarItem label="Home" active />
-          <NavbarItem label="Series" />
-          <NavbarItem label="Films" />
-          <NavbarItem label="New & Popular" />
-          <NavbarItem label="My List" />
+          <Link href="/">
+            <NavbarItem label="Home" active={isActive('/')} />
+          </Link>
+          <Link href="/series">
+            <NavbarItem label="Series" active={isActive('/series')} />
+          </Link>
+          <Link href="/films">
+            <NavbarItem label="Films" active={isActive('/films')} />
+          </Link>
+          <Link href="/favorites">
+            <NavbarItem label="Favorites" active={isActive('/favorites')} />
+          </Link>
         </div>
         <div
           onClick={toggleMobileMenu}
