@@ -18,7 +18,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Netflix Clone</title>
+        <title>CineBox</title>
       </Head>
       <InfoModal 
         visible={isOpen}

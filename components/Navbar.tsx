@@ -7,6 +7,7 @@ import MobileMenu from '@/components/MobileMenu';
 import NavbarItem from '@/components/NavbarItem';
 import useSearchModal from '@/hooks/useSearchModal';
 import SearchModal from './Modals/SearchModal';
+import Logo from '@/components/Logo';
 
 const TOP_OFFSET = 67;
 
@@ -59,7 +60,7 @@ const Navbar = () => {
         }`}
       >
         <Link href="/">
-          <img src="/images/logo.png" className="h-4 lg:h-7" alt="Logo" />
+          <Logo />
         </Link>
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <Link href="/">

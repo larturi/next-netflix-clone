@@ -1,4 +1,4 @@
-# Nflx Clone with Next.js
+# CineBox — Portfolio Streaming Demo
 
 ### Next.js, Prisma, MongoDB, Tailwind, NextAuth
 

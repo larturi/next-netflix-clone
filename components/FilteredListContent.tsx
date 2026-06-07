@@ -21,7 +21,7 @@ const FilteredListContent: React.FC<FilteredListContentProps> = ({
   return (
     <>
       <Head>
-        <title>Netflix Clone: {title}</title>
+        <title>CineBox - {title}</title>
       </Head>
       <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar />

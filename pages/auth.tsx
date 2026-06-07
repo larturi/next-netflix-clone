@@ -6,6 +6,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import axios from 'axios';
 import Input from '../components/Input';
+import Logo from '../components/Logo';
 
 const Auth = () => {
   const router = useRouter();
@@ -60,7 +61,7 @@ const Auth = () => {
   return (
     <>
       <Head>
-        <title>Netflix Clone: Login</title>
+        <title>CineBox - Sign In</title>
       </Head>
 
       <div
@@ -84,7 +85,7 @@ const Auth = () => {
       "
         >
           <nav className="px-12 py-5">
-            <img src="/images/logo.png" alt="logo" className="h-12" />
+            <Logo className="h-12" />
           </nav>
           <div className="flex justify-center">
             <div
@@ -132,13 +133,13 @@ const Auth = () => {
               <button
                 onClick={variant === 'login' ? login : register}
                 className="
-                bg-red-600 
+                bg-violet-600 
                   py-3 
                   text-white 
                   rounded-md 
                   w-full 
                   mt-10 
-                  hover:bg-red-700 
+                  hover:bg-violet-700 
                   transition
                 "
               >
